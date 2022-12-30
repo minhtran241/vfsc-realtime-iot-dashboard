@@ -48,16 +48,138 @@
     <script type="module" src="script.js"></script>
   </head>
 
-  <body class="sticky-footer" id="page-top" style="font-size: x-small">
+  <body
+    class="fixed-nav sticky-footer bg-dark"
+    id="page-top"
+    style="font-size: x-small"
+  >
+    <!-- Navigation-->
+    <nav
+      class="navbar navbar-expand-sm navbar-dark bg-dark fixed-top"
+      id="mainNav"
+    >
+      <a class="navbar-brand" href="/">Data Dashboard</a>
+      <button
+        class="navbar-toggler navbar-toggler-right"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
+          <li
+            class="nav-item"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Dashboard"
+          >
+            <a class="nav-link" href="/">
+              <i class="fa fa-fw fa-dashboard"></i>
+              <span class="nav-link-text">Dashboard</span>
+            </a>
+          </li>
+          <li
+            class="nav-item"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Charts"
+          >
+            <a class="nav-link" href="/">
+              <i class="fa fa-fw fa-area-chart"></i>
+              <span class="nav-link-text">Charts</span>
+            </a>
+          </li>
+          <li
+            class="nav-item"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Tables"
+          >
+            <a class="nav-link" href="/">
+              <i class="fa fa-fw fa-table"></i>
+              <span class="nav-link-text">Tables</span>
+            </a>
+          </li>
+          <li
+            class="nav-item"
+            data-toggle="tooltip"
+            data-placement="right"
+            title="Link"
+          >
+            <a class="nav-link" href="#">
+              <i class="fa fa-fw fa-link"></i>
+              <span class="nav-link-text">Link</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </nav>
     <div class="content-wrapper">
       <div class="container-fluid">
         <!-- Breadcrumbs-->
         <ol class="breadcrumb">
-          <li class="breadcrumb-item">
-            <a href="#">Dashboard</a>
-          </li>
-          <li class="breadcrumb-item active">Data Dashboard</li>
+          <li class="breadcrumb-item">Dashboard</li>
+          <li class="breadcrumb-item active"><a href="/">Data Dashboard</a></li>
         </ol>
+        <!-- Icon Cards-->
+        <div class="row">
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card o-hidden h-100">
+              <div class="card-header"><i class="fa fa-bar-chart"></i> UpT</div>
+              <div class="card-body">
+                <canvas id="UpTChart" width="100%" height="30"></canvas>
+              </div>
+              <div class="card-footer small text-muted">
+                Realtime Updating...
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card o-hidden h-100">
+              <div class="card-header">
+                <i class="fa fa-bar-chart"></i> BatV
+              </div>
+              <div class="card-body">
+                <canvas id="BatVChart" width="100%" height="30"></canvas>
+              </div>
+              <div class="card-footer small text-muted">
+                Realtime Updating...
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card o-hidden h-100">
+              <div class="card-header">
+                <i class="fa fa-bar-chart"></i> SolV
+              </div>
+              <div class="card-body">
+                <canvas id="SolVChart" width="100%" height="30"></canvas>
+              </div>
+              <div class="card-footer small text-muted">
+                Realtime Updating...
+              </div>
+            </div>
+          </div>
+          <div class="col-xl-3 col-sm-6 mb-3">
+            <div class="card o-hidden h-100">
+              <div class="card-header">
+                <i class="fa fa-bar-chart"></i> STemp
+              </div>
+              <div class="card-body">
+                <canvas id="STempChart" width="100%" height="30"></canvas>
+              </div>
+              <div class="card-footer small text-muted">
+                Realtime Updating...
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- Area Chart Example-->
         <div class="card mb-3">
           <div class="card-header">

@@ -20,3 +20,19 @@ export const getLegend = (stats) => {
   });
   return legend;
 };
+
+export const getLineChartLegend = (stats) => {
+  const legend = [];
+  stats.map((obj) => {
+    legend.push(
+      (({ BatV, SolV, STemp, WTs, WT }) => ({
+        BatV,
+        SolV,
+        STemp,
+        WTs,
+        WT,
+      }))(obj)
+    );
+  });
+  return legend;
+};

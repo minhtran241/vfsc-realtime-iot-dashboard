@@ -42,6 +42,39 @@ export const processedChart = (chart, stats, legend) => {
     });
   });
   chart.data.labels = stats.map((obj) => obj.moment.split(' ')[1]);
+  return chart;
+};
 
+export const barChart = (chart, stats, legend, key) => {
+  // if (chart.data.datasets.length > 0) chart.data.datasets = [];
+  const data = {
+    labels: stats.map((obj) => obj.moment.split(' ')[1]),
+    datasets: [
+      {
+        label: key,
+        data: legend.map((obj) => obj[key]),
+        backgroundColor: [
+          'rgba(255, 99, 132, 0.2)',
+          'rgba(255, 159, 64, 0.2)',
+          'rgba(255, 205, 86, 0.2)',
+          'rgba(75, 192, 192, 0.2)',
+          'rgba(54, 162, 235, 0.2)',
+          'rgba(153, 102, 255, 0.2)',
+          'rgba(201, 203, 207, 0.2)',
+        ],
+        borderColor: [
+          'rgb(255, 99, 132)',
+          'rgb(255, 159, 64)',
+          'rgb(255, 205, 86)',
+          'rgb(75, 192, 192)',
+          'rgb(54, 162, 235)',
+          'rgb(153, 102, 255)',
+          'rgb(201, 203, 207)',
+        ],
+        borderWidth: 1,
+      },
+    ],
+  };
+  chart.data = data;
   return chart;
 };

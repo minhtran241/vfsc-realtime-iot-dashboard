@@ -222,6 +222,7 @@ const data = {
 };
 
 io.on('connection', function (socket) {
+  console.log('connected');
   setInterval(function () {
     io.sockets.emit('stats_receive', data);
   }, 10000);
