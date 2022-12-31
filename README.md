@@ -17,7 +17,7 @@ node server.js
 ### Start client
 
 ```sh
-yarn start
+yarn dev:client
 ```
 
 ## Techs
