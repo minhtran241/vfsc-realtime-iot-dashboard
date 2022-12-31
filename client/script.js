@@ -2,7 +2,12 @@ import Chart from 'chart.js/auto';
 import io from 'socket.io-client';
 import { addTable } from './table/table';
 import { getLegend, getLineChartLegend } from './chart/legend';
-import { barChart, processedChart } from './chart/chart';
+import {
+  barChart,
+  processedChart,
+  defaultBarChartConfig,
+  defaultLineChartConfig,
+} from './chart/chart';
 
 const socket = io.connect('localhost:8080');
 let lineChart;
@@ -10,12 +15,15 @@ let UpTChart;
 let BatVChart;
 let SolVChart;
 let STempChart;
+Chart.defaults.backgroundColor = '#9BD0F5';
+Chart.defaults.borderColor = '#36A2EB';
+Chart.defaults.color = '#000';
 
-socket.on('stats_receive', function (data) {
+socket.on('stats_receive', (payload) => {
   if (!lineChart && !UpTChart && !BatVChart && !!SolVChart && !STempChart)
     return;
-  const stats = data.data.slice(-5);
-  const lineChartStats = data.data.slice(-10);
+  const stats = payload.data.slice(-7);
+  const lineChartStats = payload.data;
   const lineChartLegend = getLineChartLegend(lineChartStats);
   const legend = getLegend(stats);
 
@@ -31,75 +39,32 @@ socket.on('stats_receive', function (data) {
   STempChart.update();
   lineChart.update();
 
-  addTable(data.data);
+  addTable(payload.data);
 });
 
-(async function () {
-  lineChart = new Chart(document.getElementById('lineChart'), {
-    type: 'line',
-    data: {
-      labels: [],
-      datasets: [],
-    },
-  });
+(async () => {
+  lineChart = new Chart(
+    document.getElementById('lineChart'),
+    defaultLineChartConfig()
+  );
 
-  UpTChart = new Chart(document.getElementById('UpTChart'), {
-    type: 'bar',
-    data: {
-      labels: [],
-      datasets: [],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+  UpTChart = new Chart(
+    document.getElementById('UpTChart'),
+    defaultBarChartConfig()
+  );
 
-  BatVChart = new Chart(document.getElementById('BatVChart'), {
-    type: 'bar',
-    data: {
-      labels: [],
-      datasets: [],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+  BatVChart = new Chart(
+    document.getElementById('BatVChart'),
+    defaultBarChartConfig()
+  );
 
-  SolVChart = new Chart(document.getElementById('SolVChart'), {
-    type: 'bar',
-    data: {
-      labels: [],
-      datasets: [],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+  SolVChart = new Chart(
+    document.getElementById('SolVChart'),
+    defaultBarChartConfig()
+  );
 
-  STempChart = new Chart(document.getElementById('STempChart'), {
-    type: 'bar',
-    data: {
-      labels: [],
-      datasets: [],
-    },
-    options: {
-      scales: {
-        y: {
-          beginAtZero: true,
-        },
-      },
-    },
-  });
+  STempChart = new Chart(
+    document.getElementById('STempChart'),
+    defaultBarChartConfig()
+  );
 })();
