@@ -1,9 +1,12 @@
 {
-  "name": "chartjs-example",
+  "name": "data-dashboard-vfsc",
   "version": "1.0.0",
   "license": "MIT",
+	"author": "Minh Tran",
   "scripts": {
     "dev": "node server.js & parcel client/index.html",
+		"dev:client": "parcel client/index.html",
+		"server": "node server.js",
     "build": "parcel build client/index.html"
   },
   "devDependencies": {

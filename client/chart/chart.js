@@ -3,6 +3,7 @@ export const processedChart = (chart, stats, legend) => {
   Object.entries(legend[0]).forEach(([key, value]) => {
     chart.data.datasets.push({
       label: key,
+      borderWidth: 2,
       pointBackgroundColor: 'rgba(151,187,205,1)',
       pointBorderColor: '#fff',
       axis: 'y',
@@ -80,9 +81,23 @@ export const defaultLineChartConfig = () => {
           mode: 'index',
           intersect: false,
         },
-        title: {
-          display: true,
-          text: 'Multi Statistics',
+        // title: {
+        //   display: true,
+        //   text: 'Multi Statistics',
+        // },
+        plugins: {
+          legend: {
+            labels: {
+              // This more specific font property overrides the global property
+              font: {
+                size: 10,
+                lineHeight: 1,
+              },
+            },
+          },
+        },
+        layout: {
+          padding: 0,
         },
       },
       hover: {

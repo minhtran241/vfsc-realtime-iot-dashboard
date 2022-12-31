@@ -10,20 +10,30 @@ import {
 } from './chart/chart';
 
 const socket = io.connect('localhost:8080');
+let data = null;
 let lineChart;
 let UpTChart;
 let BatVChart;
 let SolVChart;
 let STempChart;
 Chart.defaults.backgroundColor = '#9BD0F5';
-Chart.defaults.borderColor = '#36A2EB';
+// Chart.defaults.borderColor = '#36A2EB';
 Chart.defaults.color = '#000';
 
 socket.on('stats_receive', (payload) => {
-  if (!lineChart && !UpTChart && !BatVChart && !!SolVChart && !STempChart)
+  if (payload) data = payload;
+  if (
+    !lineChart &&
+    !UpTChart &&
+    !BatVChart &&
+    !SolVChart &&
+    !STempChart &&
+    !data
+  )
     return;
-  const stats = payload.data.slice(-7);
-  const lineChartStats = payload.data;
+  // if (!UpTChart && !BatVChart && !!SolVChart && !STempChart) return;
+  const stats = data.data.slice(-5);
+  const lineChartStats = data.data.slice(-5);
   const lineChartLegend = getLineChartLegend(lineChartStats);
   const legend = getLegend(stats);
 
@@ -39,7 +49,7 @@ socket.on('stats_receive', (payload) => {
   STempChart.update();
   lineChart.update();
 
-  addTable(payload.data);
+  addTable(data.tableData);
 });
 
 (async () => {
