@@ -1,24 +1,24 @@
 # Data Dashboard for VFSC
 
-[Data Dashboard for VFSC](https://github.com/minhtran241/data-dashboard) is an open source admin dashboard theme for [VFSC Group](https://farm.vfsc.vn/)
+[Data Dashboard for VFSC](https://github.com/minhtran241/data-dashboard) is an open source admin dashboard theme for [VFSC Group](https://farm.vfsc.vn/).
 
 ## Preview
 
-![SB Admin 2 Preview](./assets/charts.png)
-![SB Admin 2 Preview](./assets/table.png)
+![Data Dashboard Preview](./assets/charts.png)
+![Data Dashboard Preview](./assets/table.png)
 
 ## What are we using?
 
-* [Chart.js](https://www.chartjs.org/) - Open source HTML5 Charts for project
-* [DataTables](https://datatables.net/) -  Plug-in for the jQuery Javascript library
-* [Socket.IO](https://socket.io/) - Bidirectional and low-latency communication for every platform
-* [Bootstrap](https://getbootstrap.com/) - Powerful, extensible, and feature-packed frontend toolkit
+* [Chart.js](https://www.chartjs.org/) - Open source HTML5 Charts for project.
+* [DataTables](https://datatables.net/) -  Plug-in for the jQuery Javascript library.
+* [Socket.IO](https://socket.io/) - Bidirectional and low-latency communication for every platform.
+* [Bootstrap](https://getbootstrap.com/) - Powerful, extensible, and feature-packed frontend toolkit.
 
 ## Features
 
-* Update data realtime
-* Generate line chart
-* Generate data table
+* Update data realtime.
+* Generate line chart.
+* Generate data table.
 
 ## Download and Installation
 
