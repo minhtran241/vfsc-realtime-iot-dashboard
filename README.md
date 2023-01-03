@@ -1,6 +1,6 @@
 # Data Dashboard for VFSC
 
-[SB Admin 2](https://startbootstrap.com/theme/sb-admin-2/) is an open source admin dashboard theme for [VFSC Group](https://farm.vfsc.vn/)
+[Data Dashboard for VFSC](https://github.com/minhtran241/data-dashboard) is an open source admin dashboard theme for [VFSC Group](https://farm.vfsc.vn/)
 
 ## Preview
 
@@ -24,8 +24,8 @@
 
 To begin using this template, choose one of the following options to get started:
 
-* Clone the repo: `git clone https://github.com/StartBootstrap/startbootstrap-sb-admin-2.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/minhtran241/startbootstrap-sb-admin-2)
+* Clone the repo: `git clone https://github.com/minhtran241/data-dashboard.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/minhtran241/data-dashboard)
 
 ## Usage
 
@@ -33,8 +33,8 @@ After installation, run `yarn install` and then run `yarn dev` which will open u
 
 ## Bugs and Issues
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/StartBootstrap/startbootstrap-sb-admin-2/issues) here on GitHub.
+Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/data-dashboard/issues) here on GitHub.
 
 ## Copyright and License
 
-Code released under the [MIT](https://github.com/StartBootstrap/startbootstrap-resume/blob/master/LICENSE) license.
+Code released under the [MIT](https://github.com/minhtran241/data-dashboard/blob/main/LICENSE) license.
