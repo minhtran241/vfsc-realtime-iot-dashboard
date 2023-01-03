@@ -1,7 +1,7 @@
 const axios = require('axios');
-var app = require('express')();
-var server = require('http').Server(app);
-var io = require('socket.io')(server, {
+const app = require('express')();
+const server = require('http').Server(app);
+const io = require('socket.io')(server, {
   cors: {
     origin: 'http://localhost:1234',
     methods: ['GET', 'POST'],

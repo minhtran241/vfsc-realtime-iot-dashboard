@@ -61,9 +61,9 @@ export const defaultBarChartConfig = () => {
       labels: [],
       datasets: [],
     },
-    // options: {
-    //   indexAxis: 'y',
-    // },
+    options: {
+      indexAxis: 'y',
+    },
   };
 };
 
@@ -96,9 +96,9 @@ export const defaultLineChartConfig = () => {
             },
           },
         },
-        layout: {
-          padding: 0,
-        },
+        // layout: {
+        //   padding: 0,
+        // },
       },
       hover: {
         mode: 'index',
