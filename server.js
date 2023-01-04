@@ -40,14 +40,19 @@ io.on('connection', (socket) => {
   setInterval(async () => {
     const res = await axios.get(DATA_URL);
     const newData = res.data.data[0];
-    if (
-      newData.Id === data.slice(-1)[0].Id &&
-      newData.Time === data.slice(-1)[0].Time
-    )
-      return;
-    data.shift();
-    data.push(newData);
-    tableData.push(newData);
-    io.emit('stats_receive', { data, tableData });
+    if (newData) {
+      if (
+        newData.Id === data.slice(-1)[0]?.Id &&
+        newData.Time === data.slice(-1)[0]?.Time
+      )
+        return;
+      if (data.length >= 5) data.shift();
+      data.push(newData);
+      tableData.push(newData);
+      io.emit('stats_receive', { data, tableData });
+    } else {
+      data = [];
+      tableData = [];
+    }
   }, BROADCAST_INTERVAL);
 });

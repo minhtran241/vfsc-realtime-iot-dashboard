@@ -1,18 +1,23 @@
 export const processedChart = (chart, stats, legend) => {
   if (chart.data.datasets.length > 0) chart.data.datasets = [];
-  Object.entries(legend[0]).forEach(([key, value]) => {
-    chart.data.datasets.push({
-      label: key,
-      borderWidth: 2,
-      pointBackgroundColor: 'rgba(151,187,205,1)',
-      pointBorderColor: '#fff',
-      axis: 'y',
-      data: legend.map((obj) => obj[key]),
-      fill: false,
-      tension: 0.1,
-    });
-  });
-  chart.data.labels = stats.map((obj) => obj.moment.split(' ')[1]);
+  legend.length > 0
+    ? Object.entries(legend[0]).forEach(([key, value]) => {
+        chart.data.datasets.push({
+          label: key,
+          borderWidth: 2,
+          pointBackgroundColor: 'rgba(151,187,205,1)',
+          pointBorderColor: '#fff',
+          axis: 'y',
+          data: legend.map((obj) => obj[key]),
+          fill: false,
+          tension: 0.1,
+        });
+      })
+    : (chart.data.datasets = []);
+
+  stats.length > 0
+    ? (chart.data.labels = stats.map((obj) => obj.moment.split(' ')[1]))
+    : (chart.data.labels = []);
   return chart;
 };
 

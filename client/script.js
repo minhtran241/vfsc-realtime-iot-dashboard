@@ -34,7 +34,6 @@ socket.on('stats_receive', (payload) => {
   )
     return;
   // if (!UpTChart && !BatVChart && !!SolVChart && !STempChart) return;
-  console.log(data.data);
   if (data.data.length <= 5) {
     stats = data.data;
     lineChartStats = data.data;
