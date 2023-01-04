@@ -19,7 +19,7 @@ let data = null;
 let tableData = null;
 data = axios.get(INIT_DATA_URL).then((res) => {
   data = res.data.data;
-  tableData = data;
+  tableData = structuredClone(data);
 });
 
 server.listen(PORT);
@@ -31,7 +31,7 @@ io.on('connection', (socket) => {
     while (!data) {
       axios.get(INIT_DATA_URL).then((res) => {
         data = res.data.data;
-        tableData = data;
+        tableData = structuredClone(data);
       });
     }
   io.emit('stats_receive', { data, tableData });
