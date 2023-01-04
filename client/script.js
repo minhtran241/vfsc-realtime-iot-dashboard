@@ -11,6 +11,8 @@ import {
 
 const socket = io.connect('localhost:8080');
 let data = null;
+let stats;
+let lineChartStats;
 let lineChart;
 let UpTChart;
 let BatVChart;
@@ -32,8 +34,14 @@ socket.on('stats_receive', (payload) => {
   )
     return;
   // if (!UpTChart && !BatVChart && !!SolVChart && !STempChart) return;
-  const stats = data.data.slice(-5);
-  const lineChartStats = data.data.slice(-5);
+  console.log(data.data);
+  if (data.data.length <= 5) {
+    stats = data.data;
+    lineChartStats = data.data;
+  } else {
+    stats = data.data.slice(-5);
+    lineChartStats = data.data.slice(-5);
+  }
   const lineChartLegend = getLineChartLegend(lineChartStats);
   const legend = getLegend(stats);
 
