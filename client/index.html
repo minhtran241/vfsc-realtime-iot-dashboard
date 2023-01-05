@@ -128,17 +128,8 @@
                 <div class="col-sm-6 col-12 text-sm-end">
                   <div class="mx-n1">
                     <a
-                      href="http://vfscfood.com/"
-                      class="btn d-inline-flex btn-sm btn-neutral border-base mx-1"
-                    >
-                      <span class="pe-2">
-                        <i class="bi bi-cart"></i>
-                      </span>
-                      <span>VfSC food shop</span>
-                    </a>
-                    <a
                       href="https://farm.vfsc.vn/#/login"
-                      class="btn d-inline-flex btn-sm btn-primary mx-1"
+                      class="btn d-inline-flex btn-sm btn-primary mx-1 mb-2"
                     >
                       <span class="pe-2">
                         <i class="bi bi-box-arrow-in-right"></i>
@@ -149,22 +140,35 @@
                 </div>
               </div>
               <!-- Nav -->
-              <ul class="nav nav-tabs mt-4 overflow-x border-0"></ul>
+              <ul class="nav nav-tabs mt-4 overflow-x border-0">
+							</ul>
             </div>
           </div>
         </header>
         <!-- Main -->
-				
-        <main class="py-6 bg-surface-secondary">
+        <main class="py-6 px-6 bg-surface-secondary">
           <div class="container-fluid">
-						<div class="dropdown mb-2">
-							<button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="lineDropdown">
-								Show 10 moments
-							</button>
-							<div class="dropdown-menu">
-								<a class="dropdown-item" id="5moments">5</a>
-								<a class="dropdown-item" id="25moments">25</a>
-								<a class="dropdown-item" id="100moments">100</a>
+						<div class="btn-group">
+							<div class="dropdown mb-6">
+								<button class="btn btn-neutral border-base btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="lineDropdown">
+									Show 10 entries
+								</button>
+								<div class="dropdown-menu">
+									<a class="dropdown-item" id="5moments">5 entries</a>
+									<a class="dropdown-item" id="10moments">10 entries</a>
+									<a class="dropdown-item" id="25moments">25 entries</a>
+									<a class="dropdown-item" id="50moments">50 entries</a>
+									<a class="dropdown-item" id="100moments">100 entries</a>
+								</div>
+							</div>
+						</div>
+						<div class="btn-group">
+							<div class="dropdown mb-6" id="sensorsDropdown">
+								<button class="btn btn-neutral border-base btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="sensorBtn">
+									All Sensors
+								</button>
+								<!-- <div class="dropdown-menu" id="sensorsMenu"> -->
+								</div>
 							</div>
 						</div>
             <!-- Card stats -->
@@ -223,17 +227,18 @@
               </div>
             </div>
             <!-- Line Chart -->
-            <div class="card shadow border-0 mb-7" id="lineCharts">
-              <div class="card-header">
-                <h5 class="mb-0">Multi Statistics</h5>
-              </div>
-              <div class="card-body">
-                <canvas id="lineChart" width="100%"  height="50%"></canvas>
-              </div>
-              <div class="card-footer border-0 py-5">
-                <span class="text-muted text-sm">Realtime Updating...</span>
-              </div>
-            </div>
+						<div class="card shadow border-0 mb-7" id="lineCharts">
+							<div class="card-header">
+								<h5 class="mb-0">Multi Statistics</h5>
+							</div>
+							<div class="card-body">
+								<canvas id="lineChart" width="100%"  height="50%"></canvas>
+							</div>
+							<div class="card-footer border-0 py-5">
+								<span class="text-muted text-sm">Realtime Updating...</span>
+							</div>
+						</div>	
+											
             <!-- Table -->
             <div class="card shadow mb-7" id="tables">
               <div class="card-header">

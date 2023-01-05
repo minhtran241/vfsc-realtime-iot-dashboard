@@ -8,14 +8,22 @@ import {
   defaultBarChartConfig,
   defaultLineChartConfig,
 } from './chart/chart';
+import {
+  addSensorMenuItem,
+  getSensorIds,
+  getStatsOfSensor,
+} from './chart/sensors';
 
 const socket = io.connect('localhost:8080');
 let data = null;
+const MOMENT_LIST = [5, 10, 25, 50, 100];
 
 let stats;
 let lineChartStats;
 let barMoments = 10;
 let lineMoments = 10;
+let sensors;
+let currentSensor;
 
 let lineChart;
 let UpTChart;
@@ -38,33 +46,21 @@ socket.on('stats_receive', (payload) => {
   )
     return;
   // if (!UpTChart && !BatVChart && !!SolVChart && !STempChart) return;
-  if (data.data.length <= barMoments) {
-    stats = data.data;
-    if (data.data.length <= lineMoments) {
-      lineChartStats = data.data;
-    } else {
-      lineChartStats = data.data.slice(-lineMoments);
-    }
-  } else {
-    stats = data.data.slice(-barMoments);
-    lineChartStats = data.data.slice(-lineMoments);
-  }
 
-  const lineChartLegend = getLineChartLegend(lineChartStats);
-  const legend = getLegend(stats);
+  sensors = getSensorIds(data.data);
+  addSensorMenuItem(sensors);
+  sensors.map((sensor) => {
+    $(`#${sensor}`).on('click', () => {
+      sensorsDropdownHandler(sensor, false);
+    });
+  });
+  $('#allSensors').on('click', () => {
+    sensorsDropdownHandler(null, true);
+  });
 
-  lineChart = processedChart(lineChart, lineChartStats, lineChartLegend);
-  UpTChart = barChart(UpTChart, stats, legend, 'UpT');
-  BatVChart = barChart(BatVChart, stats, legend, 'BatV');
-  SolVChart = barChart(SolVChart, stats, legend, 'SolV');
-  STempChart = barChart(STempChart, stats, legend, 'STemp');
-
-  UpTChart.update();
-  BatVChart.update();
-  SolVChart.update();
-  STempChart.update();
-  lineChart.update();
-
+  if (currentSensor) stats = getStatsOfSensor(data.data, currentSensor);
+  else stats = data.data;
+  updateCharts();
   addTable(data.tableData);
 });
 
@@ -96,32 +92,45 @@ socket.on('stats_receive', (payload) => {
 })();
 
 // Line chart dropdown handlers
-$('#5moments').on('click', () => {
-  dropdownHandler(5);
+MOMENT_LIST.map((moment) => {
+  $(`#${moment.toString()}moments`).on('click', () => {
+    dropdownHandler(moment);
+  });
 });
-$('#25moments').on('click', () => {
-  dropdownHandler(25);
-});
-$('#100moments').on('click', () => {
-  dropdownHandler(100);
-});
+
+const sensorsDropdownHandler = (sensorId, all) => {
+  if (!all) {
+    document.querySelector('#sensorBtn').innerText = `Sensor ${sensorId}`;
+    stats = getStatsOfSensor(data.data, sensorId);
+  } else {
+    document.querySelector('#sensorBtn').innerText = `All Sensors`;
+    stats = data.data;
+  }
+  currentSensor = sensorId;
+  updateCharts();
+};
 
 const dropdownHandler = (numberOfEntries) => {
   lineMoments = numberOfEntries;
   barMoments = numberOfEntries;
   document.querySelector(
     '#lineDropdown'
-  ).innerText = `Show ${numberOfEntries} moments`;
-  if (data.data.length <= barMoments) {
-    stats = data.data;
-    if (data.data.length <= lineMoments) {
-      lineChartStats = data.data;
+  ).innerText = `Show ${numberOfEntries} entries`;
+  if (currentSensor) stats = getStatsOfSensor(data.data, currentSensor);
+  else stats = data.data;
+  updateCharts();
+};
+
+const updateCharts = () => {
+  if (stats.length <= barMoments) {
+    if (stats.length <= lineMoments) {
+      lineChartStats = stats;
     } else {
-      lineChartStats = data.data.slice(-lineMoments);
+      lineChartStats = stats.slice(-lineMoments);
     }
   } else {
-    stats = data.data.slice(-barMoments);
-    lineChartStats = data.data.slice(-lineMoments);
+    stats = stats.slice(-barMoments);
+    lineChartStats = stats.slice(-lineMoments);
   }
   const lineChartLegend = getLineChartLegend(lineChartStats);
   const legend = getLegend(stats);
