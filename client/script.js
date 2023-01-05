@@ -39,7 +39,7 @@ socket.on('stats_receive', (payload) => {
     lineChartStats = data.data;
   } else {
     stats = data.data.slice(-5);
-    lineChartStats = data.data.slice(-5);
+    lineChartStats = data.data.slice(-10);
   }
   const lineChartLegend = getLineChartLegend(lineChartStats);
   const legend = getLegend(stats);

@@ -9,28 +9,13 @@
     />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Data Dashboard</title>
-    <!-- Bootstrap core CSS-->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-      integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N"
-      crossorigin="anonymous"
-    />
-    <script
+    <title>VfSC IoT</title>
+    <!-- Bootstrap core CSS-->  
+		<script
       src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
       integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
       crossorigin="anonymous"
     ></script>
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct"
-      crossorigin="anonymous"
-    ></script>
-    <link
-      rel="stylesheet"
-      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css"
-    />
     <script
       type="text/javascript"
       src="https://code.jquery.com/jquery-2.1.1.min.js"
@@ -38,6 +23,11 @@
     <script
       type="text/javascript"
       src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"
+    ></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
+      crossorigin="anonymous"
     ></script>
     <link
       rel="stylesheet"
@@ -48,213 +38,213 @@
     <script defer src="http://localhost:8080/socket.io/socket.io.js"></script>
     <script type="module" src="script.js"></script>
   </head>
-
-  <body class="fixed-nav sticky-footer bg-dark" id="page-top">
-    <!-- Navigation-->
-    <nav
-      class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"
-      id="mainNav"
+  <body id="pageTop">
+    <!-- Banner -->
+    <a
+      href="http://vfscfood.com/#/content/gioi-thieu"
+      class="btn w-full btn-primary text-truncate rounded-0 py-2 border-0 position-relative"
+      style="z-index: 1000"
     >
-      <a class="navbar-brand" href="/">VFSC Admin</a>
-      <button
-        class="navbar-toggler navbar-toggler-right"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarResponsive"
-        aria-controls="navbarResponsive"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav navbar-sidenav" id="exampleAccordion">
-          <li
-            class="nav-item"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Dashboard"
-          >
-            <a class="nav-link" href="/">
-              <i class="fa fa-fw fa-dashboard"></i>
-              <span class="nav-link-text">Dashboard</span>
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="BarCharts"
-          >
-            <a class="nav-link" href="#barCharts">
-              <i class="fa fa-bar-chart"></i>
-              <span class="nav-link-text">Bar Charts</span>
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="LineCharts"
-          >
-            <a class="nav-link" href="#lineCharts">
-              <i class="fa fa-fw fa-area-chart"></i>
-              <span class="nav-link-text">Line Chart</span>
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Tables"
-          >
-            <a class="nav-link" href="#tables">
-              <i class="fa fa-fw fa-table"></i>
-              <span class="nav-link-text">Table</span>
-            </a>
-          </li>
-          <li
-            class="nav-item"
-            data-toggle="tooltip"
-            data-placement="right"
-            title="Link"
-          >
-            <a class="nav-link" href="https://farm.vfsc.vn">
-              <i class="fa fa-fw fa-link"></i>
-              <span class="nav-link-text">Vietnam Food Safety Chain</span>
-            </a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-    <div class="content-wrapper">
-      <div class="container-fluid">
-        <!-- Breadcrumbs-->
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item">Dashboard</li>
-          <li class="breadcrumb-item active"><a href="/">Data Dashboard</a></li>
-        </ol>
-        <!-- Icon Cards-->
-        <div class="row" id="barCharts">
-          <div class="col-xl-3 col-sm-3 mb-3">
-            <div class="card o-hidden h-100">
-              <div class="card-header"><i class="fa fa-bar-chart"></i> UpT</div>
-              <div class="card-body">
-                <canvas id="UpTChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">
-                Realtime Updating...
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-3 mb-3">
-            <div class="card o-hidden h-100">
-              <div class="card-header">
-                <i class="fa fa-bar-chart"></i> BatV
-              </div>
-              <div class="card-body">
-                <canvas id="BatVChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">
-                Realtime Updating...
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-3 mb-3">
-            <div class="card o-hidden h-100">
-              <div class="card-header">
-                <i class="fa fa-bar-chart"></i> SolV
-              </div>
-              <div class="card-body">
-                <canvas id="SolVChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">
-                Realtime Updating...
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-3 mb-3">
-            <div class="card o-hidden h-100">
-              <div class="card-header">
-                <i class="fa fa-bar-chart"></i> STemp
-              </div>
-              <div class="card-body">
-                <canvas id="STempChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">
-                Realtime Updating...
-              </div>
-            </div>
-          </div>
-        </div>
-        <!-- <div class="row">
-          <div class="col-xl-3 col-sm-3 mb-3">
-            <div class="card o-hidden h-100">
-              <div class="card-header">
-                <i class="fa fa-bar-chart"></i> SolV
-              </div>
-              <div class="card-body">
-                <canvas id="SolVChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">
-                Realtime Updating...
-              </div>
-            </div>
-          </div>
-          <div class="col-xl-3 col-sm-3 mb-3">
-            <div class="card o-hidden h-100">
-              <div class="card-header">
-                <i class="fa fa-bar-chart"></i> STemp
-              </div>
-              <div class="card-body">
-                <canvas id="STempChart" width="100%" height="50"></canvas>
-              </div>
-              <div class="card-footer small text-muted">
-                Realtime Updating...
-              </div>
-            </div>
-          </div>
-        </div> -->
+      Copyright ©VfSC 2023. About us →
+    </a>
 
-        <!-- Area Chart Example-->
-        <div class="card mb-3" id="lineCharts">
-          <div class="card-header">
-            <i class="fa fa-area-chart"></i> Line Chart
+    <!-- Dashboard -->
+    <div class="d-flex flex-column flex-lg-row h-lg-full bg-surface-secondary">
+      <!-- Vertical Navbar -->
+      <nav
+        class="navbar show navbar-vertical h-lg-screen navbar-expand-lg px-0 py-3 navbar-light bg-white border-bottom border-bottom-lg-0 border-end-lg"
+        id="navbarVertical"
+      >
+        <div class="container-fluid">
+          <!-- Toggler -->
+          <button
+            class="navbar-toggler ms-n2"
+            type="button"
+            data-toggle="collapse"
+            data-target="#sidebarCollapse"
+            aria-controls="sidebarCollapse"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- Brand -->
+          <a
+            class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0"
+            href="http://vfscfood.com"
+
+          >
+            <img
+              src="https://scontent.fhan7-1.fna.fbcdn.net/v/t39.30808-6/304766989_508200334565506_7300922805076973534_n.png?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3F7aJQKKbNQAX8vsgqJ&tn=Slu7AM7v3ZGHiKS-&_nc_ht=scontent.fhan7-1.fna&oh=00_AfDftCB7btuoE_huDuajqoZmDMtutl4f-G1EyFwQQZPXKw&oe=63BAAB17"
+              alt="logo" style="width: 200; height:200"
+            />
+          </a>
+          <!-- User menu (mobile) -->
+          <!-- Collapse -->
+          <div class="collapse navbar-collapse" id="sidebarCollapse">
+            <!-- Navigation -->
+            <ul class="navbar-nav navbar-sidenav">
+              <li class="nav-item">
+                <a class="nav-link" href=/">
+                  <i class="bi bi-house"></i> Dashboard
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#barCharts">
+                  <i class="bi bi-bar-chart"></i> Single Statistics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#lineCharts">
+                  <i class="bi bi-graph-up"></i> Multi Statistics
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#tables">
+                  <i class="bi bi-table"></i> Table
+                </a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="http://vfsc.vn/">
+                  <i class="bi bi-people"></i> Vietnam food Safety Chain
+                </a>
+              </li>
+            </ul>
           </div>
-          <div class="card-body">
-            <canvas id="lineChart" width="100%" height="50"></canvas>
-          </div>
-          <div class="card-footer small text-muted">Realtime Updating...</div>
         </div>
-        <!-- Example DataTables Card-->
-        <div class="card mb-3" id="tables">
-          <div class="card-header"><i class="fa fa-table"></i> Data Table</div>
-          <div class="card-body">
-            <div class="table-responsive">
-              <table
-                class="table table-sm table-primary table-hover"
-                id="dataTable"
-                width="100%"
-                cellspacing="0"
-              ></table>
+      </nav>
+      <!-- Main content -->
+      <div class="h-screen flex-grow-1 overflow-y-lg-auto">
+        <!-- Header -->
+        <header class="bg-surface-primary border-bottom pt-6">
+          <div class="container-fluid">
+            <div class="mb-npx">
+              <div class="row align-items-center">
+                <div class="col-sm-6 col-12 mb-4 mb-sm-0">
+                  <!-- Title -->
+                  <h1 class="h2 mb-0 ls-tight">VfSC IoT</h1>
+                </div>
+                <!-- Actions -->
+                <div class="col-sm-6 col-12 text-sm-end">
+                  <div class="mx-n1">
+                    <a
+                      href="http://vfscfood.com/"
+                      class="btn d-inline-flex btn-sm btn-neutral border-base mx-1"
+                    >
+                      <span class="pe-2">
+                        <i class="bi bi-cart"></i>
+                      </span>
+                      <span>VfSC food shop</span>
+                    </a>
+                    <a
+                      href="https://farm.vfsc.vn/#/login"
+                      class="btn d-inline-flex btn-sm btn-primary mx-1"
+                    >
+                      <span class="pe-2">
+                        <i class="bi bi-box-arrow-in-right"></i>
+                      </span>
+                      <span>Login to your VfSC account</span>
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <!-- Nav -->
+              <ul class="nav nav-tabs mt-4 overflow-x border-0"></ul>
             </div>
           </div>
-          <div class="card-footer small text-muted">Realtime Updating...</div>
-        </div>
-      </div>
-      <!-- /.container-fluid-->
-      <!-- /.content-wrapper-->
-      <footer class="sticky-footer">
-        <div class="container">
-          <div class="text-center">
-            <small>Copyright ©VFSC 2022</small>
+        </header>
+        <!-- Main -->
+        <main class="py-6 bg-surface-secondary">
+          <div class="container-fluid">
+            <!-- Card stats -->
+            <div class="row g-6 mb-6" id="barCharts">
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-header">
+                    <h5 class="mb-0">UpT</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="UpTChart" width="100%"></canvas>
+                  </div>
+                  <div class="card-footer border-0 py-5">
+										<span class="text-muted text-sm">Realtime Updating...</span>
+									</div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-header">
+                    <h5 class="mb-0">BatV</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="BatVChart" width="100%"></canvas>
+                  </div>
+                  <div class="card-footer border-0 py-5">
+										<span class="text-muted text-sm">Realtime Updating...</span>
+									</div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-header">
+                    <h5 class="mb-0">SolV</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="SolVChart" width="100%"></canvas>
+                  </div>
+                  <div class="card-footer border-0 py-5">
+										<span class="text-muted text-sm">Realtime Updating...</span>
+									</div>
+                </div>
+              </div>
+              <div class="col-xl-3 col-sm-6 col-12">
+                <div class="card shadow border-0">
+                  <div class="card-header">
+                    <h5 class="mb-0">STemp</h5>
+                  </div>
+                  <div class="card-body">
+                    <canvas id="STempChart" width="100%"></canvas>
+                  </div>
+                  <div class="card-footer border-0 py-5">
+										<span class="text-muted text-sm">Realtime Updating...</span>
+									</div>
+                </div>
+              </div>
+            </div>
+            <!-- Line Chart -->
+            <div class="card shadow border-0 mb-7" id="lineCharts">
+              <div class="card-header">
+                <h5 class="mb-0">Multi Statistics</h5>
+              </div>
+              <div class="card-body">
+                <canvas id="lineChart" width="100%" height="50"></canvas>
+              </div>
+              <div class="card-footer border-0 py-5">
+                <span class="text-muted text-sm">Realtime Updating...</span>
+              </div>
+            </div>
+            <!-- Table -->
+            <div class="card shadow mb-7" id="tables">
+              <div class="card-header">
+                <h5 class="mb-0">Table</h5>
+              </div>
+              <div class="card-body">
+                <div class="table-responsive">
+                  <table
+                    class="table table-sm table-hover"
+                    id="dataTable"
+                    width="100%"
+                    cellspacing="0"
+                  ></table>
+                </div>
+              </div>
+              <div class="card-footer border-0 py-5">
+                <span class="text-muted text-sm">Realtime Updating...</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </footer>
-      <!-- Scroll to Top Button-->
-      <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fa fa-table"></i>
-      </a>
+        </main>
+      </div>
     </div>
   </body>
 </html>
