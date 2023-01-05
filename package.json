@@ -2,7 +2,7 @@
   "name": "vfsc-iot-dashboard",
   "version": "1.0.0",
   "license": "MIT",
-	"author": "Minh Tran",
+  "author": "Minh Tran",
   "scripts": {
     "dev": "node server.js & parcel client/index.html",
     "dev:client": "parcel client/index.html",
