@@ -1,6 +1,6 @@
 # IoT Dashboard for VfSC
 
-[IoT Dashboard for VfSC](https://chart.vfsc.vn) is an open source IoT dashboard theme for [VfSC 
+[IoT Dashboard for VfSC](https://chart.vfsc.vn) is an open source realtime IoT dashboard theme for [VfSC 
 Group](https://farm.vfsc.vn/).
 
 ## Preview
