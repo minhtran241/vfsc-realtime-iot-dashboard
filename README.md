@@ -5,8 +5,9 @@ Group](https://farm.vfsc.vn/).
 
 ## Preview
 
-![Data Dashboard Preview](./assets/charts.png)
-![Data Dashboard Preview](./assets/table.png)
+![Data Dashboard Preview](./assets/bar-2.png)
+![Data Dashboard Preview](./assets/line-2.png)
+![Data Dashboard Preview](./assets/table-2.png)
 
 ## What are we using?
 
