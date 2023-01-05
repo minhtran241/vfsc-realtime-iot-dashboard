@@ -1,6 +1,7 @@
-# Data Dashboard for VFSC
+# IoT Dashboard for VFSC
 
-[Data Dashboard for VFSC](https://github.com/minhtran241/data-dashboard) is an open source admin dashboard theme for [VFSC Group](https://farm.vfsc.vn/).
+[IoT Dashboard for VFSC](https://chart.vfsc.vn) is an open source IoT dashboard theme for [VFSC 
+Group](https://farm.vfsc.vn/).
 
 ## Preview
 
@@ -24,8 +25,8 @@
 
 To begin using this template, choose one of the following options to get started:
 
-* Clone the repo: `git clone https://github.com/minhtran241/data-dashboard.git`
-* [Fork, Clone, or Download on GitHub](https://github.com/minhtran241/data-dashboard)
+* Clone the repo: `git clone https://github.com/minhtran241/vfsc-iot-dashboard.git`
+* [Fork, Clone, or Download on GitHub](https://github.com/minhtran241/vfsc-iot-dashboard)
 
 ## Usage
 
@@ -33,8 +34,9 @@ After installation, run `yarn install` and then run `yarn dev` which will open u
 
 ## Bugs and Issues
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/data-dashboard/issues) here on GitHub.
+Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/vfsc-iot-dashboard/issues) here on 
+GitHub.
 
 ## Copyright and License
 
-Code released under the [MIT](https://github.com/minhtran241/data-dashboard/blob/main/LICENSE) license.
+Code released under the [MIT](https://github.com/minhtran241/vfsc-iot-dashboard/blob/main/LICENSE) license.
