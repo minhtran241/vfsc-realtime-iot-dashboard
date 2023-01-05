@@ -11,8 +11,12 @@ import {
 
 const socket = io.connect('localhost:8080');
 let data = null;
+
 let stats;
 let lineChartStats;
+let barMoments = 10;
+let lineMoments = 10;
+
 let lineChart;
 let UpTChart;
 let BatVChart;
@@ -34,13 +38,18 @@ socket.on('stats_receive', (payload) => {
   )
     return;
   // if (!UpTChart && !BatVChart && !!SolVChart && !STempChart) return;
-  if (data.data.length <= 5) {
+  if (data.data.length <= barMoments) {
     stats = data.data;
-    lineChartStats = data.data;
+    if (data.data.length <= lineMoments) {
+      lineChartStats = data.data;
+    } else {
+      lineChartStats = data.data.slice(-lineMoments);
+    }
   } else {
-    stats = data.data.slice(-5);
-    lineChartStats = data.data.slice(-10);
+    stats = data.data.slice(-barMoments);
+    lineChartStats = data.data.slice(-lineMoments);
   }
+
   const lineChartLegend = getLineChartLegend(lineChartStats);
   const legend = getLegend(stats);
 
@@ -85,3 +94,46 @@ socket.on('stats_receive', (payload) => {
     defaultBarChartConfig()
   );
 })();
+
+// Line chart dropdown handlers
+$('#5moments').on('click', () => {
+  dropdownHandler(5);
+});
+$('#25moments').on('click', () => {
+  dropdownHandler(25);
+});
+$('#100moments').on('click', () => {
+  dropdownHandler(100);
+});
+
+const dropdownHandler = (numberOfEntries) => {
+  lineMoments = numberOfEntries;
+  barMoments = numberOfEntries;
+  document.querySelector(
+    '#lineDropdown'
+  ).innerText = `Show ${numberOfEntries} moments`;
+  if (data.data.length <= barMoments) {
+    stats = data.data;
+    if (data.data.length <= lineMoments) {
+      lineChartStats = data.data;
+    } else {
+      lineChartStats = data.data.slice(-lineMoments);
+    }
+  } else {
+    stats = data.data.slice(-barMoments);
+    lineChartStats = data.data.slice(-lineMoments);
+  }
+  const lineChartLegend = getLineChartLegend(lineChartStats);
+  const legend = getLegend(stats);
+
+  lineChart = processedChart(lineChart, lineChartStats, lineChartLegend);
+  UpTChart = barChart(UpTChart, stats, legend, 'UpT');
+  BatVChart = barChart(BatVChart, stats, legend, 'BatV');
+  SolVChart = barChart(SolVChart, stats, legend, 'SolV');
+  STempChart = barChart(STempChart, stats, legend, 'STemp');
+  UpTChart.update();
+  BatVChart.update();
+  SolVChart.update();
+  STempChart.update();
+  lineChart.update();
+};
