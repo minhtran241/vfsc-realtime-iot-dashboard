@@ -10,6 +10,7 @@
     "build": "parcel build client/index.html"
   },
   "devDependencies": {
+    "@parcel/transformer-sass": "2.8.2",
     "parcel": "^2.6.2"
   },
   "dependencies": {
