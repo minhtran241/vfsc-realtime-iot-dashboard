@@ -1,33 +1,19 @@
 export const addTable = (data) => {
-  const dataSet = data.map((obj) => Object.values(obj));
   if ($.fn.dataTable.isDataTable('#dataTable')) {
-    table = $('#dataTable').DataTable({ retrieve: true });
-    table.destroy();
+    $('#dataTable').DataTable().clear().destroy();
   }
-  $(document).ready(function () {
-    $('#dataTable').DataTable({
-      data: dataSet,
-      autoWidth: true,
-      columns: [
-        { title: 'ID' },
-        { title: 'Name' },
-        { title: 'Lat' },
-        { title: 'Lng' },
-        { title: 'Time' },
-        { title: 'UpT' },
-        { title: 'BatV' },
-        { title: 'SolV' },
-        { title: 'STemp' },
-        { title: 'WTs' },
-        { title: 'WT' },
-        { title: 'WPs' },
-        { title: 'WP' },
-        { title: 'WDs' },
-        { title: 'WD' },
-        { title: 'WNs' },
-        { title: 'WN' },
-        { title: 'Moment' },
-      ],
-    });
+  $(document).ready(() => {
+    $('#dataTable')
+      .DataTable({
+        data: data.map((obj) => Object.values(obj)),
+        autoWidth: true,
+        processing: true,
+        autoFill: true,
+        order: [['4', 'desc']],
+        columns: Object.keys(data[0]).map((key) => ({
+          title: key,
+        })),
+      })
+      .draw();
   });
 };

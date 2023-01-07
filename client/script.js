@@ -14,7 +14,7 @@ import {
   getStatsOfSensor,
 } from './chart/sensors';
 
-const socket = io.connect('localhost:8080');
+const socket = io.connect('http://localhost:8080');
 let data = null;
 const MOMENT_LIST = [5, 10, 25, 50, 100];
 

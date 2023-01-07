@@ -4,15 +4,17 @@ ul {
 }
 .footer-section {
   background: #5c60f5;
-  /* position: relative; */
-  top: auto;
+  position: relative;
 }
 
-@media (max-width: 640px) {
+/* @media (max-width: 480px) {
   #footer {
     display: none;
   }
-}
+  .footer-content {
+    display: none;
+  }
+} */
 
 .footer-cta {
   border-bottom: 1px solid white;
@@ -91,30 +93,7 @@ ul {
   color: #fff;
   text-transform: capitalize;
 }
-.subscribe-form {
-  position: relative;
-  overflow: hidden;
-}
-.subscribe-form input {
-  width: 100%;
-  padding: 14px 28px;
-  background: #2e2e2e;
-  border: 1px solid #2e2e2e;
-  color: #fff;
-}
-.subscribe-form button {
-  position: absolute;
-  right: 0;
-  background: #ff5e14;
-  padding: 13px 20px;
-  border: 1px solid #ff5e14;
-  top: 0;
-}
-.subscribe-form button i {
-  color: #fff;
-  font-size: 22px;
-  transform: rotate(-6deg);
-}
+
 .copyright-area {
   background: #fff;
   padding: 25px 0;

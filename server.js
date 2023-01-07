@@ -1,5 +1,7 @@
 const axios = require('axios');
 const app = require('express')();
+const bodyParser = require('body-parser');
+app.use(bodyParser.json());
 const server = require('http').Server(app);
 const io = require('socket.io')(server, {
   cors: {
@@ -10,7 +12,7 @@ const io = require('socket.io')(server, {
 });
 
 // Constants
-const PORT = 8080;
+const PORT = parseInt(process.env.PORT, 10) || 8080;
 const INIT_DATA_URL = 'https://trace.vfsc.vn/iot/xxx?items=*';
 const DATA_URL = 'https://trace.vfsc.vn/iot/xxx';
 const BROADCAST_INTERVAL = 15000;
@@ -20,6 +22,17 @@ let tableData = null;
 data = axios.get(INIT_DATA_URL).then((res) => {
   data = res.data.data;
   tableData = [...data];
+});
+
+app.get('/health', (req, res) => {
+  res.json({ status: 'Alive' });
+});
+
+app.post('/signal', (req, res) => {
+  if (req.body.data.length > 0) {
+    processNewData(req.body.data[0], true);
+    res.json({ status: 'Received Data' });
+  } else res.json({ status: 'Request Body Empty' });
 });
 
 server.listen(PORT);
@@ -39,20 +52,26 @@ io.on('connection', (socket) => {
 
   setInterval(async () => {
     const res = await axios.get(DATA_URL);
-    const newData = res.data.data[0];
-    if (newData) {
-      if (
-        newData.Id === data.slice(-1)[0]?.Id &&
-        newData.Time === data.slice(-1)[0]?.Time
-      )
-        return;
-      if (data.length >= 5) data.shift();
-      data.push(newData);
-      tableData.push(newData);
-      io.emit('stats_receive', { data, tableData });
-    } else {
-      data = [];
-      tableData = [];
-    }
+    processNewData(res.data.data[0], false);
   }, BROADCAST_INTERVAL);
 });
+
+const processNewData = (newData, isPostRequest) => {
+  let insertNewData = false;
+  if (newData) {
+    insertNewData = true;
+    const isValid = data.find(
+      (obj) =>
+        newData.Id === obj.Id && parseInt(newData.Time) <= parseInt(obj.Time)
+    );
+    if (isValid) return;
+    if (data.length >= 10) data.shift();
+    data.push(newData);
+    tableData.push(newData);
+    io.emit('stats_receive', { data, tableData });
+  }
+  if (!isPostRequest && !insertNewData) {
+    data = [];
+    tableData = [];
+  }
+};
