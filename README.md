@@ -1,13 +1,13 @@
 # IoT Dashboard for VfSC
 
-[IoT Dashboard for VfSC](https://chart.vfsc.vn) is an open source realtime IoT dashboard theme for [VfSC 
+[IoT Dashboard for VfSC](https://chart.vfsc.vn) is an open source realtime IoT dashboard theme for [VfSC
 Group](https://farm.vfsc.vn/).
 
 ## Preview
 
-![Data Dashboard Preview](./assets/bar-2.png)
-![Data Dashboard Preview](./assets/line-2.png)
-![Data Dashboard Preview](./assets/table-2.png)
+![Data Dashboard Preview](./assets/info+bar-3.png)
+![Data Dashboard Preview](./assets/line-3.png)
+![Data Dashboard Preview](./assets/table-3.png)
 
 ## What are we using?
 
@@ -35,7 +35,7 @@ After installation, run `yarn install` and then run `yarn dev` which will open u
 
 ## Bugs and Issues
 
-Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/vfsc-iot-dashboard/issues) here on 
+Have a bug or an issue with this template? [Open a new issue](https://github.com/minhtran241/vfsc-iot-dashboard/issues) here on
 GitHub.
 
 ## Copyright and License
