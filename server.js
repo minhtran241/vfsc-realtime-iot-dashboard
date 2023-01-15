@@ -19,7 +19,12 @@ const BROADCAST_INTERVAL = 15000;
 
 let data = null;
 let tableData = null;
+let total = 0;
+let plan = null;
+let lastUpdated = new Date().toLocaleString();
 data = axios.get(INIT_DATA_URL).then((res) => {
+  total = res.data.data.length;
+  plan = res.data.plan;
   data = res.data.data;
   tableData = [...data];
 });
@@ -43,12 +48,15 @@ io.on('connection', (socket) => {
   if (!data) {
     while (!data) {
       axios.get(INIT_DATA_URL).then((res) => {
+        total = res.data.data.length;
+        plan = res.data.plan;
         data = res.data.data;
         tableData = [...data];
+        lastUpdated = new Date().toLocaleString();
       });
     }
   }
-  io.emit('stats_receive', { data, tableData });
+  io.emit('stats_receive', { lastUpdated, plan, total, data, tableData });
 
   setInterval(async () => {
     const res = await axios.get(DATA_URL);
@@ -66,9 +74,11 @@ const processNewData = (newData, isPostRequest) => {
     );
     if (isValid) return;
     if (data.length >= 10) data.shift();
+    total += 1;
     data.push(newData);
     tableData.push(newData);
-    io.emit('stats_receive', { data, tableData });
+    lastUpdated = new Date().toLocaleString();
+    io.emit('stats_receive', { lastUpdated, plan, total, data, tableData });
   }
   if (!isPostRequest && !insertNewData) {
     data = [];

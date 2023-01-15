@@ -1,5 +1,5 @@
 import Chart from 'chart.js/auto';
-import io from 'socket.io-client';
+import { io } from 'socket.io-client';
 import { addTable } from './table/table';
 import { getLegend, getLineChartLegend } from './chart/legend';
 import {
@@ -14,7 +14,12 @@ import {
   getStatsOfSensor,
 } from './chart/sensors';
 
-const socket = io.connect('http://localhost:8080');
+const socket = io('http://localhost:8080');
+socket.on('connection');
+const sendMessage = () => {
+  socket.emit('message', 'hey it worked!');
+};
+sendMessage();
 let data = null;
 const MOMENT_LIST = [5, 10, 25, 50, 100];
 
@@ -60,6 +65,16 @@ socket.on('stats_receive', (payload) => {
 
   if (currentSensor) stats = getStatsOfSensor(data.data, currentSensor);
   else stats = data.data;
+  document.getElementById('total').innerText = currentSensor
+    ? `${getStatsOfSensor(data.data, currentSensor).length} entries`
+    : `${data.total} entries`;
+  document.getElementById('plan').innerText = data.plan.toString();
+  document
+    .querySelectorAll('.last-updated')
+    .forEach(
+      (el) =>
+        (el.textContent = data.lastUpdated || new Date().toLocaleDateString())
+    );
   updateCharts();
   addTable(data.tableData);
 });
@@ -103,10 +118,13 @@ const sensorsDropdownHandler = (sensorId, all) => {
     document.querySelector('#sensorBtn').innerText = `Sensor ${sensorId}`;
     stats = getStatsOfSensor(data.data, sensorId);
   } else {
-    document.querySelector('#sensorBtn').innerText = `All Sensors`;
+    document.querySelector('#sensorBtn').innerText = `All sensors`;
     stats = data.data;
   }
   currentSensor = sensorId;
+  document.getElementById('total').innerText = currentSensor
+    ? `${getStatsOfSensor(data.data, currentSensor).length} entries`
+    : `${data.total} entries`;
   updateCharts();
 };
 
