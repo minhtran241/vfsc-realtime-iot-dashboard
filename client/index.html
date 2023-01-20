@@ -10,7 +10,7 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>VfSC IoT</title>
-				<link rel="icon" type="image/x-icon" href="https://is3-ssl.mzstatic.com/image/thumb/Purple125/v4/52/8b/95/528b950a-03bc-851b-5572-b85d1b386729/source/512x512bb.jpg">
+        <link rel="icon" type="image/x-icon" href="https://is3-ssl.mzstatic.com/image/thumb/Purple125/v4/52/8b/95/528b950a-03bc-851b-5572-b85d1b386729/source/512x512bb.jpg">
         <!-- Bootstrap core CSS-->  
         <script
             src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
@@ -30,7 +30,7 @@
         <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.js"></script>
         <link href="css/dd.css" rel="stylesheet" />
         <link href="css/footer.css" rel="stylesheet" />
-        <script defer src="http://localhost:8080/socket.io/socket.io.js"></script>
+        <!-- <script defer src="http://localhost:8080/socket.io/socket.io.js"></script> -->
         <script type="module" src="script.js"></script>
     </head>
     <body id="pageTop">
@@ -65,10 +65,10 @@
                     <!-- Brand -->
                     <a
                         class="navbar-brand py-lg-2 mb-lg-5 px-lg-6 me-0"
-                        href="http://vfscfood.com"
+                        href="http://vfscfood.com" id="brand"
                         >
                     <img
-                        src="https://is3-ssl.mzstatic.com/image/thumb/Purple125/v4/52/8b/95/528b950a-03bc-851b-5572-b85d1b386729/source/512x512bb.jpg"
+                        src="https://play-lh.googleusercontent.com/kIlAMs5gFmx7avlengishJ73bjZQa6L9ffHHIXYFzHR5ExT_GLUEJ_LBFOfh3hIKi3XV=w240-h480-rw"
                         alt="logo" style="width: 200; height: 170"
                         />
                     </a>
@@ -82,11 +82,11 @@
                                 <i class="bi bi-house"></i> Dashboard
                                 </a>
                             </li>
-														<li class="nav-item">
-															<a class="nav-link" href="#info">
-															<i class="bi bi-info-circle"></i> Information
-															</a>
-														</li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#info">
+                                <i class="bi bi-info-circle"></i> Information
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="#barCharts">
                                 <i class="bi bi-bar-chart"></i> Single Statistics
@@ -123,7 +123,7 @@
                                     <h1 class="h2 mb-0 ls-tight">VfSC IoT</h1>
                                 </div>
                                 <!-- Actions -->
-                                <div class="col-sm-6 col-12 text-sm-end">
+                                <div class="col-sm-6 col-12 text-sm-end" id="actions">
                                     <div class="mx-n1">
                                         <a
                                             href="https://farm.vfsc.vn/#/login"
@@ -163,7 +163,7 @@
                         <div class="btn-group">
                             <div class="dropdown mb-6" id="sensorsDropdown">
                                 <button class="btn btn-neutral border-base btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false" id="sensorBtn">
-                                All Sensors
+                                All sensors
                                 </button>
                                 <!-- <div class="dropdown-menu" id="sensorsMenu"> -->
                             </div>
@@ -181,7 +181,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-																							<i class="bi bi-award-fill"></i>
+                                                <i class="bi bi-award-fill"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -204,7 +204,7 @@
                                         </div>
                                         <div class="col-auto">
                                             <div class="icon icon-shape bg-primary text-white text-lg rounded-circle">
-																							<i class="bi bi-list-ol"></i>
+                                                <i class="bi bi-list-ol"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -229,10 +229,10 @@
                                     <canvas id="UpTChart" width="100%" height="100%"></canvas>
                                 </div>
                                 <div class="card-footer border-0 py-5">
-																	<span class="badge badge-pill bg-soft-success text-success me-2">
-																		Last updated
-																		</span>
-																		<span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
+                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    Last updated
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
                                 </div>
                             </div>
                         </div>
@@ -245,10 +245,10 @@
                                     <canvas id="BatVChart" width="100%" height="100%"></canvas>
                                 </div>
                                 <div class="card-footer border-0 py-5">
-																	<span class="badge badge-pill bg-soft-success text-success me-2">
-																		Last updated
-																		</span>
-																		<span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
+                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    Last updated
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
                                 </div>
                             </div>
                         </div>
@@ -261,10 +261,10 @@
                                     <canvas id="SolVChart" width="100%" height="100%"></canvas>
                                 </div>
                                 <div class="card-footer border-0 py-5">
-																	<span class="badge badge-pill bg-soft-success text-success me-2">
-																		Last updated
-																		</span>
-																		<span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
+                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    Last updated
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
                                 </div>
                             </div>
                         </div>
@@ -277,10 +277,10 @@
                                     <canvas id="STempChart" width="100%" height="100%"></canvas>
                                 </div>
                                 <div class="card-footer border-0 py-5">
-																	<span class="badge badge-pill bg-soft-success text-success me-2">
-																		Last updated
-																		</span>
-																		<span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
+                                    <span class="badge badge-pill bg-soft-success text-success me-2">
+                                    Last updated
+                                    </span>
+                                    <span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
                                 </div>
                             </div>
                         </div>
@@ -294,10 +294,10 @@
                             <canvas id="lineChart" width="100%"  height="50%"></canvas>
                         </div>
                         <div class="card-footer border-0 py-5">
-													<span class="badge badge-pill bg-soft-success text-success me-2">
-														Last updated
-														</span>
-														<span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
+                            <span class="badge badge-pill bg-soft-success text-success me-2">
+                            Last updated
+                            </span>
+                            <span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
                         </div>
                     </div>
                     <!-- Table -->
@@ -316,10 +316,10 @@
                             </div>
                         </div>
                         <div class="card-footer border-0 py-5">
-													<span class="badge badge-pill bg-soft-success text-success me-2">
-														Last updated
-														</span>
-														<span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
+                            <span class="badge badge-pill bg-soft-success text-success me-2">
+                            Last updated
+                            </span>
+                            <span class="text-nowrap text-xs text-muted last-updated" id="last-updated">Realtime Updating...</span>
                         </div>
                     </div>
             </div>
@@ -327,78 +327,79 @@
         </div>
         <!-- <footer class="footer-section" id="footer">
             <div class="container">
-            		<div class="footer-cta pt-5 pb-5">
-            				<div class="row">
-            						<div class="col-xl-4 col-md-4 mb-30">
-            								<div class="single-cta">
-            									<i class="bi bi-geo-alt"></i>
-            										<div class="cta-text">
-            												<h4>Find us</h4>
-            												<span>130 Nguyễn Đức Cảnh</span>
-            										</div>
-            								</div>
-            						</div>
-            						<div class="col-xl-4 col-md-4 mb-30">
-            								<div class="single-cta">
-            										<i class="bi bi-phone"></i>
-            										<div class="cta-text">
-            												<h4>Call us</h4>
-            												<span>0243 202 9199</span>
-            										</div>
-            								</div>
-            						</div>
-            						<div class="col-xl-4 col-md-4 mb-30">
-            								<div class="single-cta">
-            										<i class="bi bi-envelope"></i>
-            										<div class="cta-text">
-            												<h4>Mail us</h4>
-            												<span>info@vifotec.com</span>
-            										</div>
-            								</div>
-            						</div>
-            				</div>
-            		</div>
-            		<div class="footer-content pt-5 pb-5">
-            				<div class="row">
-            						<div class="col-xl-6 col-lg-6 mb-50">
-            								<div class="footer-widget">
-            										<div class="footer-logo">
-            												<a href="index.html"><img src="https://scontent.fhan7-1.fna.fbcdn.net/v/t39.30808-6/304766989_508200334565506_7300922805076973534_n.png?_nc_cat=107&ccb=1-7&_nc_sid=09cbfe&_nc_ohc=3F7aJQKKbNQAX8vsgqJ&tn=Slu7AM7v3ZGHiKS-&_nc_ht=scontent.fhan7-1.fna&oh=00_AfDftCB7btuoE_huDuajqoZmDMtutl4f-G1EyFwQQZPXKw&oe=63BAAB17" class="img-fluid" alt="logo"></a>
-            										</div>
-            										<div class="footer-text">
-            												<p>CÔNG TY CỔ PHẦN VIFOTEC - Tầng 1, số 130 Nguyễn Đức Cảnh, phường Tương Mai, quận Hoàng Mai, TP. Hà Nội, VN, 10000.</p>
-            										</div>
-            								</div>
-            						</div>
-            						<div class="col-xl-3 col-lg-3 col-md-6 mb-30">
-            								<div class="footer-widget">
-            										<div class="footer-widget-heading">
-            												<h3>More information</h3>
-            										</div>
-            										<ul>
-            												<li><a href="http://vfscfood.com/#/">Home</a></li>
-            												<li><a href="http://vfscfood.com/#/category/san-pham">Productions</a></li>
-            												<li><a href="http://vfscfood.com/#/content/gioi-thieu">About us</a></li>
-            												<li><a href="http://vfscfood.com/#/contact">Contact</a></li>
-            										</ul>
-            								</div>
-            						</div>
-            						
-            				</div>
-            		</div>
+                <div class="footer-cta pt-5 pb-5">
+                    <div class="row">
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="bi bi-geo-alt"></i>
+                                <div class="cta-text">
+                                    <h4>Find us</h4>
+                                    <span>130 Nguyễn Đức Cảnh</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="bi bi-phone"></i>
+                                <div class="cta-text">
+                                    <h4>Call us</h4>
+                                    <span>0243 202 9199</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-4 col-md-4 mb-30">
+                            <div class="single-cta">
+                                <i class="bi bi-envelope"></i>
+                                <div class="cta-text">
+                                    <h4>Mail us</h4>
+                                    <span>info@vifotec.com</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer-content pt-5 pb-5">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 mb-50">
+                            <div class="footer-widget">
+                                <div class="footer-logo">
+                                    <a href="index.html"><img src="https://play-lh.googleusercontent.com/kIlAMs5gFmx7avlengishJ73bjZQa6L9ffHHIXYFzHR5ExT_GLUEJ_LBFOfh3hIKi3XV=w240-h480-rw" class="img-fluid" alt="logo"></a>
+                                </div>
+                                <div class="footer-text">
+                                    <p>CÔNG TY CỔ PHẦN VIFOTEC - Tầng 1, số 130 Nguyễn Đức Cảnh, phường Tương Mai, quận Hoàng Mai, TP. Hà Nội, VN, 10000.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-3 col-lg-3 col-md-6 mb-30">
+                            <div class="footer-widget">
+                                <div class="footer-widget-heading">
+                                    <h3>More information</h3>
+                                </div>
+                                <ul>
+                                    <li><a href="http://vfscfood.com/#/">Home</a></li>
+                                    <li><a href="http://vfscfood.com/#/category/san-pham">Productions</a></li>
+                                    <li><a href="http://vfscfood.com/#/content/gioi-thieu">About us</a></li>
+                                    <li><a href="http://vfscfood.com/#/contact">Contact</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="copyright-area">
-            		<div class="container">
-            				<div class="row">
-            						<div class="col-xl-6 col-lg-6 text-center text-lg-left">
-            								<div class="copyright-text">
-            										<p>Copyright &copy; <script>document.write(new Date().getFullYear())</script>, All Right Reserved <a href="https://farm.vfsc.vn/">VfSC</a></p>
-            								</div>
-            						</div>
-            				</div>
-            		</div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 text-center text-lg-left">
+                            <div class="copyright-text">
+                                <p>
+                                    Copyright &copy; <script>document.write(new Date().getFullYear())</script>, All Right Reserved <a href="https://farm.vfsc.vn/">VfSC</a>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            </footer> -->
+        </footer> -->
         </div>
     </body>
 </html>

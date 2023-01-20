@@ -6,3 +6,17 @@
 
 /* Bootstrap Icons */
 @import url('https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.4.0/font/bootstrap-icons.min.css');
+
+@media (max-width: 850px) {
+  #brand {
+    display: none;
+  }
+  #footer {
+    display: none;
+  }
+}
+@media (max-width: 767px) {
+  #actions {
+    display: none;
+  }
+}

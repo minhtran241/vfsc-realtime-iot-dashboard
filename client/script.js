@@ -15,11 +15,6 @@ import {
 } from './chart/sensors';
 
 const socket = io('http://localhost:8080');
-socket.on('connection');
-const sendMessage = () => {
-  socket.emit('message', 'hey it worked!');
-};
-sendMessage();
 let data = null;
 const MOMENT_LIST = [5, 10, 25, 50, 100];
 
