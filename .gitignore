@@ -2,7 +2,7 @@
 
 .secret
 secret
-certs.tar.gzy
+certs.tar.gz
 node_modules
 
 # next.js
