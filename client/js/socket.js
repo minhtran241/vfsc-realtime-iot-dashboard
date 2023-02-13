@@ -1,18 +1,18 @@
 import Chart from 'chart.js/auto';
 import { io } from 'socket.io-client';
-import { addTable } from './table/table';
-import { getLegend, getLineChartLegend } from './chart/legend';
+import { addTable } from '../table/table';
+import { getLegend, getLineChartLegend } from '../chart/legend';
 import {
   barChart,
   processedChart,
   defaultBarChartConfig,
   defaultLineChartConfig,
-} from './chart/chart';
+} from '../chart/chart';
 import {
   addSensorMenuItem,
   getSensorIds,
   getStatsOfSensor,
-} from './chart/sensors';
+} from '../chart/sensors';
 
 const socket = io('http://localhost:8080');
 let data = null;
